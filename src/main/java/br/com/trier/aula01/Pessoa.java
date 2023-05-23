@@ -1,4 +1,4 @@
-package br.com.trier.aula01entities;
+package br.com.trier.aula01;
 
 public class Pessoa {
 
@@ -46,7 +46,7 @@ public class Pessoa {
 		this.altura = altura;
 	}
 
-	public String avaliacaoImc(Double peso, Double altura) {
+	private String avaliacaoImc(Double peso, Double altura) {
 		
 		Double resultado = peso / Math.pow(altura, 2);
 		

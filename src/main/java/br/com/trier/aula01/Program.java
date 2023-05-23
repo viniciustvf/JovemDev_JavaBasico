@@ -3,14 +3,12 @@
  * 
  */
 
-package br.com.trier.aula01main;
+package br.com.trier.aula01;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-
-import br.com.trier.aula01entities.Pessoa;
 
 public class Program {
 
