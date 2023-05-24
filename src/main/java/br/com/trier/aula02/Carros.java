@@ -1,5 +1,10 @@
 package br.com.trier.aula02;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Carros {
 	
 	private String marca;
@@ -10,30 +15,6 @@ public class Carros {
 		super();
 		this.marca = marca;
 		this.ano = ano;
-		this.cor = cor;
-	}
-
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
-	public Cores getCor() {
-		return cor;
-	}
-
-	public void setCor(Cores cor) {
 		this.cor = cor;
 	}
 
