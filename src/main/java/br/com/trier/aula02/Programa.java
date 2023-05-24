@@ -1,8 +1,12 @@
 package br.com.trier.aula02;
-
-import java.time.format.DateTimeFormatter;
+/**
+ * @author VINICIUS COSTA
+ * 
+ */
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Programa {
 	
@@ -23,7 +27,7 @@ public class Programa {
 
 			case 1:
 				System.out.print( "Marca: " );
-				String marca = sc.next();
+				String marca = sc.next().toUpperCase();
 				
 				System.out.print( "Ano: " );
 				String anoString = sc.next();
@@ -62,14 +66,19 @@ public class Programa {
 				Util.menu();
 				break;
 			case 3: 
-				System.out.print("Digite o numero da marca que procura: ");
-				int k = 1;
-				for ( Cores cor : Cores.values() ) {
-					System.out.println(k + " " + cor);
-					k++;
-				}
+				System.out.println("Escreva a marca que procura");
+				
+				Set<String> marcasDisponiveis = new LinkedHashSet<String>();
 
-				int marcaSelecionada = sc.nextInt();
+				for ( Carros carro : list ) {
+					marcasDisponiveis.add(carro.getMarca());
+				}
+				System.out.println("Marcas disponiveis: ");
+				for ( String marcaDisponivel : marcasDisponiveis ) {
+					System.out.println(marcaDisponivel);
+				}
+				
+				String marcaSelecionada = sc.next();
 				Util.listarCarroPorMarca(marcaSelecionada, list);
 				
 				Util.menu();
@@ -89,7 +98,7 @@ public class Programa {
 				Util.listarCarroPorCor(numeroEscolhido, list) ;
 				Util.menu();
 				break;
-				
+
 			}
 
 		} while (op != 5);
