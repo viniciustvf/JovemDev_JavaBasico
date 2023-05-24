@@ -24,7 +24,7 @@ public class Util {
 		//Passando os enums para um vetor, para serem selecionados.
 		Cores[] cores = Cores.values();
 
-		if (numeroCor >= 1 && numeroCor <= cores.length) {
+		if ( numeroCor >= 1 && numeroCor <= cores.length ) {
 			corSelecionada = cores[numeroCor - 1];
 			return corSelecionada;
 		} else {
