@@ -1,6 +1,5 @@
 package br.com.trier.aula02;
 
-import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,7 +10,6 @@ public class Programa {
 	
 	public static void main(String[] args) {
 		
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy");
 		Scanner sc = new Scanner(System.in);
 		
 		Util.menu();
@@ -29,36 +27,26 @@ public class Programa {
 				
 				System.out.print( "Ano: " );
 				String anoString = sc.next();
-				Year ano = Year.parse( anoString );
-				int anoInteiro = ano.getValue();
+				int anoInteiro = Util.obterAnoInteiro(anoString);
 				
 				System.out.println( "Selecione uma cor: " );
-				int i = 1;
 				
+				int i = 1;
 				for ( Cores cor : Cores.values() ) {
 					System.out.println(i + " " + cor);
 					i++;
 				}
 				
 				System.out.print("Digite o número correspondente à cor: ");
-		        int numeroCor = sc.nextInt();
-		        Cores corSelecionada = null;
-		        
-		        //Passando os enums para um vetor, para serem selecionados.			
-		        Cores[] cores = Cores.values();
-		        
-		        if ( numeroCor >= 1 && numeroCor <= cores.length ) {
-		            corSelecionada = cores[numeroCor - 1];
-		            System.out.println( "Cor selecionada: " + corSelecionada );
-		        } else {
-		            System.out.println( "Número inválido" );
-		        }
+				
+				int numeroCor = sc.nextInt();
+				Cores corSelecionada = Util.selecionaCor(numeroCor);
 				
 				list.add(new Carros( marca,anoInteiro,corSelecionada ) );
 				
 				Util.menu();
+				
 				break;
-			
 			case 2:
 				System.out.print("Digite o ano inicial de fabricação (yyyy): ");
 				String anoInicialString = sc.next();
@@ -71,11 +59,37 @@ public class Programa {
 				System.out.println("");
 				Util.listaCarroPeriodoFabricacao(anoInicialInteiro, anoFinalInteiro, list);
 				
+				Util.menu();
+				break;
 			case 3: 
-				Util.listarCarroPorMarca(list);
+				System.out.print("Digite o numero da marca que procura: ");
+				int k = 1;
+				for ( Cores cor : Cores.values() ) {
+					System.out.println(k + " " + cor);
+					k++;
+				}
+
+				int marcaSelecionada = sc.nextInt();
+				Util.listarCarroPorMarca(marcaSelecionada, list);
+				
+				Util.menu();
+				break;
 				
 			case 4:
-				//Util.listarCarroPorCor(list); TO-DO: CASE4 E DIMINUIR CASE1.
+				int j = 1;
+				for ( Cores cor : Cores.values() ) {
+					System.out.println(j + " " + cor);
+					j++;
+				}
+				
+				System.out.print("Digite o número correspondente à cor: ");
+				
+				int numeroEscolhido = sc.nextInt();
+				System.out.println("");
+				Util.listarCarroPorCor(numeroEscolhido, list) ;
+				Util.menu();
+				break;
+				
 			}
 
 		} while (op != 5);
