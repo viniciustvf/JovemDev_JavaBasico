@@ -1,4 +1,4 @@
-package br.com.trier.aula03;
+package br.com.trier.aula03.futebol;
 
 import java.util.Scanner;
 
