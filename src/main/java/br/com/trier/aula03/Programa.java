@@ -17,18 +17,23 @@ public class Programa {
 			op = sc.nextInt();
 			switch(op) {
 			case 1:
+				time = new Time();
 				time.cadastraTime();
 				listTime.add(time);
 				break;
 			case 2:
-				time.listarJogadoresTime();
+				Time.listarTimes(listTime);
+				time.listaJogadoresDoTime(listTime);
 				break;
 			case 3:
-				Util.verificarArtilheiro(time.getListJogador());
+				Jogador artilheiro = Util.verificarArtilheiro(time.getListJogador());
+				System.out.println(artilheiro);
 				break;
 			case 4:
 				Time timeMaisGols = Util.timeComMaisGols(listTime);
-				System.out.println(timeMaisGols);
+				System.out.println(timeMaisGols.getNome()); 
+				timeMaisGols.listarJogadores();
+				System.out.println("TOTAL DE GOLS: " + timeMaisGols.quantidadeGols());
 				break;
 			} 	
 		} while (op != 5);

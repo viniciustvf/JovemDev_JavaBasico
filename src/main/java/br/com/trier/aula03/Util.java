@@ -17,17 +17,16 @@ public class Util {
 		System.out.println("------------------------------------");
 	}
 	
-	
-	
 	static Jogador verificarArtilheiro(ArrayList<Jogador> list) {
 		Integer qtdGol = 0;
 		Jogador artilheiro = new Jogador();
 		for (Jogador jogador : list) {
-			if (jogador.getQtdGolMarcado() > qtdGol) {
+			if (jogador.getQtdGolMarcado() >= qtdGol) {
 				artilheiro = jogador;
+				return artilheiro;
 			}
 		}
-		return artilheiro;
+		return null;
 	}
 	
 	static Time timeComMaisGols(ArrayList<Time> listTime) {
