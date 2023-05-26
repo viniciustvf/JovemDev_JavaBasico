@@ -18,23 +18,24 @@ public class Util {
                 "--------------------------------------------------\n";
     }
 
-    public static String pesquisarPorAutor(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Digite o nome do autor: ");
+    public static String pesquisarPorAutor( ArrayList<Autor> listAutor, ArrayList<Livro> listLivro ) {
+        
+    	System.out.println( Util.listarAutores(listAutor) );
+    	Scanner sc = new Scanner( System.in );
+        System.out.print( "Digite o nome do autor: " );
         String autorNome = sc.nextLine().trim();
 
         ArrayList<Livro> livroPorAutor = new ArrayList<Livro>();
 
         for (Livro livro : listLivro) {
-            if (livro.contemAutor(autorNome)) {
-                livroPorAutor.add(livro);
+            if (livro.contemAutor( autorNome )) {
+                livroPorAutor.add( livro );
             }
-        }
-
-        if (!livroPorAutor.isEmpty()) {
+        }      
+        if ( !livroPorAutor.isEmpty() ) {
             StringBuilder ret = new StringBuilder();
-            for (Livro livro : livroPorAutor) {
-                ret.append(livro).append("\n");
+            for ( Livro livro : livroPorAutor ) {
+                ret.append( livro ).append( "\n" );
             }
             return ret.toString();
         } else {
@@ -42,25 +43,25 @@ public class Util {
         }
     }
 
-    public static String pesquisarPorPreco(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Digite o preço inicial: ");
+    public static String pesquisarPorPreco( ArrayList<Autor> listAutor, ArrayList<Livro> listLivro ) {
+        Scanner sc = new Scanner( System.in );
+        System.out.print( "Digite o preço inicial: " );
         double precoI = sc.nextDouble();
-        System.out.print("Digite o preço final: ");
+        System.out.print( "Digite o preço final: " );
         double precoF = sc.nextDouble();
 
         ArrayList<Livro> livroPorPreco = new ArrayList<Livro>();
 
-        for (Livro livro : listLivro) {
-            if (livro.getPreco() > precoI && livro.getPreco() < precoF) {
-                livroPorPreco.add(livro);
+        for ( Livro livro : listLivro ) {
+            if ( livro.getPreco() > precoI && livro.getPreco() < precoF ) {
+                livroPorPreco.add( livro );
             }
         }
 
-        if (!livroPorPreco.isEmpty()) {
+        if ( !livroPorPreco.isEmpty() ) {
             StringBuilder ret = new StringBuilder();
-            for (Livro livro : livroPorPreco) {
-                ret.append(livro).append("\n");
+            for ( Livro livro : livroPorPreco ) {
+                ret.append( livro ).append( "\n" );
             }
             return ret.toString();
         } else {
@@ -68,19 +69,20 @@ public class Util {
         }
     }
 
-    public static String pesquisarPorIdade(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
-        ArrayList<Livro> livroPorIdade = new ArrayList<Livro>();
+    public static String pesquisarPorIdade( ArrayList<Autor> listAutor, ArrayList<Livro> listLivro ) {
+        
+    	ArrayList<Livro> livroPorIdade = new ArrayList<Livro>();
 
-        for (Livro livro : listLivro) {
-            if (livro.contemAutorMenorIdade()) {
+        for ( Livro livro : listLivro ) {
+            if ( livro.contemAutorMenorIdade() ) {
                 livroPorIdade.add(livro);
             }
         }
 
-        if (!livroPorIdade.isEmpty()) {
+        if ( !livroPorIdade.isEmpty() ) {
             StringBuilder ret = new StringBuilder();
-            for (Livro livro : livroPorIdade) {
-                ret.append(livro).append("\n");
+            for ( Livro livro : livroPorIdade ) {
+                ret.append( livro ).append( "\n" );
             }
             return ret.toString();
         } else {
@@ -88,20 +90,21 @@ public class Util {
         }
     }
 
-    public static String pesquisarPorSexo(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
-        EnumSexo sexo = EnumSexo.escolherSexo();
+    public static String pesquisarPorSexo( ArrayList<Autor> listAutor, ArrayList<Livro> listLivro ) {
+        
+    	EnumSexo sexo = EnumSexo.escolherSexo();
         ArrayList<Livro> livroPorSexo = new ArrayList<Livro>();
 
-        for (Livro livro : listLivro) {
-            if (livro.contemAutorPorSexo(sexo)) {
-                livroPorSexo.add(livro);
+        for ( Livro livro : listLivro ) {
+            if ( livro.contemAutorPorSexo( sexo )) {
+                livroPorSexo.add( livro );
             }
         }
 
-        if (!livroPorSexo.isEmpty()) {
+        if ( !livroPorSexo.isEmpty() ) {
             StringBuilder ret = new StringBuilder();
-            for (Livro livro : livroPorSexo) {
-                ret.append(livro).append("\n");
+            for ( Livro livro : livroPorSexo ) {
+                ret.append( livro ).append( "\n" );
             }
             return ret.toString();
         } else {
@@ -110,12 +113,31 @@ public class Util {
     }
     
     
-    static String listarAutores(ArrayList<Autor> listAutor) {
+    static String listarAutores( ArrayList<Autor> listAutor ) {
         StringBuilder ret = new StringBuilder();
-        for (Autor autor : listAutor) {
-            ret.append("\n").append(autor);
+        for ( Autor autor : listAutor ) {
+            ret.append( "\n" ).append( autor );
         }
         return ret.toString();
     }
+    
+    static String listarLivros( ArrayList<Livro> listLivro ) {
+        StringBuilder retLivros = new StringBuilder();
+
+        for ( Livro livro : listLivro ) {
+            retLivros.append( livro );
+        }
+        return retLivros.toString();
+    }
+    
+    static String listarAutorComIndice( ArrayList<Autor> autores ) {
+    	String ret = "";
+    	System.out.println( "Escolha um autor: (Máximo 4)" );
+        for ( int i = 0 ; i < autores.size() ; i++ ) {
+            ret += ( i + 1 ) + " - " + autores.get( i ).getNome() + "\n";
+        }
+        return ret;
+    }
+    
 }
 
