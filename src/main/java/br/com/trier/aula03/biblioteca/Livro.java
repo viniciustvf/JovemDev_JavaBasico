@@ -99,7 +99,14 @@ public class Livro {
 		return false;
 	}
 	
-	
+	boolean contemAutorMenorIdade(ArrayList<Autor> autorList) {
+		for (Autor autor : autorList) {
+			if(autor.getIdade() <= 12){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 	

@@ -38,10 +38,10 @@ public class Programa {
 				System.out.println(Util.pesquisarPorAutor(listAutor, listLivro));
 				break;
 			case 5:
-				
+				System.out.println(Util.pesquisarPorPreco(listAutor, listLivro));
 				break;
 			case 6:
-				
+				System.out.println(Util.pesquisarPorIdade(listAutor, listLivro));
 				break;
 			case 7:
 				
