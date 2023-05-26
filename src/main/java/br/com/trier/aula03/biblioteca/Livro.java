@@ -12,6 +12,8 @@ import lombok.Setter;
 public class Livro {
 
 	
+	private static final Integer IDADE_INFANTIL = 12;
+	
 	private String titulo;
 	private Double preco;
 	private ArrayList<Autor> listAutor = new ArrayList<Autor>();
@@ -99,14 +101,25 @@ public class Livro {
 		return false;
 	}
 	
-	boolean contemAutorMenorIdade(ArrayList<Autor> autorList) {
-		for (Autor autor : autorList) {
-			if(autor.getIdade() <= 12){
+	boolean contemAutorMenorIdade() {
+		for (Autor autor : this.listAutor) {
+			if(autor.getIdade() <= IDADE_INFANTIL){
 				return true;
 			}
 		}
 		return false;
 	}
+	
+	
+	boolean contemAutorPorSexo(EnumSexo sexo) {
+		for (Autor autor : this.listAutor) {
+			if(autor.getSexo().equals(sexo)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 	
 	

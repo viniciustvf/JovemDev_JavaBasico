@@ -44,7 +44,7 @@ public class Programa {
 				System.out.println(Util.pesquisarPorIdade(listAutor, listLivro));
 				break;
 			case 7:
-				
+				System.out.println(Util.pesquisarPorSexo(listAutor, listLivro));
 				break;
 			} 	
 		} while (op != 8);

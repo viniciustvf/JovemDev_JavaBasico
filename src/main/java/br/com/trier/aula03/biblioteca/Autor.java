@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Autor {
 	
 	private String nome;
-	private char sexo;
+	private EnumSexo sexo;
 	private Integer idade;
 
 	
@@ -22,8 +22,8 @@ public class Autor {
 			nome = sc.next().toUpperCase();
 			sc.nextLine();
 			
-			System.out.print("Informe o sexo do autor: (M/F)\n");
-			sexo = sc.next().toUpperCase().charAt(0);
+			System.out.print("Informe o sexo do autor:\n");
+			sexo = EnumSexo.escolherSexo();
 			
 			try {
 				System.out.print("Informe a idade do autor:\n");
@@ -34,9 +34,6 @@ public class Autor {
 			}
 			
 			if(!validarNome()) {
-				cadastraAutor();
-			}
-			if(!validarSexo()) {
 				cadastraAutor();
 			}
 			if(!validarIdade()) {
@@ -52,14 +49,7 @@ public class Autor {
 		}
 		return true;
 	}		
-	
-	boolean validarSexo() {	
-		if (sexo != 'M' && sexo != 'F') {
-			System.out.println("SEXO INVÁLIDO, DIGITE NOVAMENTE");
-			return false;
-		}
-		return true;
-	}	
+		
 	
 	boolean validarIdade() {
 		if (idade < 0) {

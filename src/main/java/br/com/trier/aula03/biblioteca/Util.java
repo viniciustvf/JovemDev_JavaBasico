@@ -36,9 +36,8 @@ public class Util {
 		return null;
 	}
 
-	static ArrayList<Livro> pesquisarPorPreco(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
+	static String pesquisarPorPreco(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
 
-		String ret = "";
 		ArrayList<Livro> livroPorPreco = new ArrayList<Livro>();
 		Scanner sc = new Scanner(System.in);
 
@@ -53,20 +52,34 @@ public class Util {
 				livroPorPreco.add(livro);
 			}
 		}
-		return livroPorPreco;
+		return livroPorPreco.toString();
 	}
 
-	static ArrayList<Livro> pesquisarPorIdade(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
+	static String pesquisarPorIdade(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
 
 		ArrayList<Livro> livroPorIdade = new ArrayList<Livro>();
 		Scanner sc = new Scanner(System.in);
 
 		for (Livro livro : listLivro) {
-			if (livro.contemAutorMenorIdade(listAutor)) {
+			if (livro.contemAutorMenorIdade()) {
 				livroPorIdade.add(livro);
 			}
 		}
-		return livroPorIdade;
+		return livroPorIdade.toString();
 	}
 
+	
+	static String pesquisarPorSexo(ArrayList<Autor> listAutor, ArrayList<Livro> listLivro) {
+
+		ArrayList<Livro> livroPorSexo = new ArrayList<Livro>();
+		EnumSexo sexo = EnumSexo.escolherSexo();
+		
+		
+		for (Livro livro : listLivro) {
+			if (livro.contemAutorPorSexo(sexo)) {
+				livroPorSexo.add(livro);
+			}
+		}
+		return livroPorSexo.toString();
+	}
 }
