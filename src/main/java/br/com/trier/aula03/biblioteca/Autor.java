@@ -14,6 +14,7 @@ public class Autor {
 	private String nome;
 	private char sexo;
 	private Integer idade;
+
 	
 	void cadastraAutor() {
 			Scanner sc = new Scanner(System.in);	
@@ -32,20 +33,35 @@ public class Autor {
 				System.exit(0);
 			}
 			
-			if(!validaCadastro()) {
+			if(!validarNome()) {
 				cadastraAutor();
 			}
+			if(!validarSexo()) {
+				cadastraAutor();
+			}
+			if(!validarIdade()) {
+				cadastraAutor();
+			}
+
 	}
 	
-	boolean validaCadastro() {
+	boolean validarNome() {
 		if (nome.trim().equals("")) {
 			System.out.println("NOME INVÁLIDO, DIGITE NOVAMENTE");
 			return false;
 		}
+		return true;
+	}		
+	
+	boolean validarSexo() {	
 		if (sexo != 'M' && sexo != 'F') {
 			System.out.println("SEXO INVÁLIDO, DIGITE NOVAMENTE");
 			return false;
 		}
+		return true;
+	}	
+	
+	boolean validarIdade() {
 		if (idade < 0) {
 			System.out.println("IDADE INVÁLIDA, DIGITE NOVAMENTE");
 			return false;
@@ -53,14 +69,7 @@ public class Autor {
 		return true;
 	}
 	
-	static Autor listarAutores(ArrayList<Autor> autores) {
-		for (Autor autor : autores) {
-			return autor;
-		}
-		return null;		
-	}
-	
-	static ArrayList<Autor> escolheAutor(ArrayList<Autor> autores) {
+static ArrayList<Autor> escolheAutor(ArrayList<Autor> autores) {
 		
 		Scanner sc = new Scanner(System.in);
 		Character escolha = null;
@@ -86,15 +95,9 @@ public class Autor {
 	}
 	
 	
-	
-	
-	
-	
-
 	@Override
 	public String toString() {
-		return "AUTOR: " + nome + ", SEXO: " + sexo + ", IDADE: " + idade;
+		return "AUTOR: " + nome + ", SEXO: " + sexo + ", IDADE: " + idade + "\n";
 	}
-	
 	
 }

@@ -11,61 +11,108 @@ import lombok.Setter;
 @Setter
 public class Livro {
 
-	Scanner sc = new Scanner(System.in);
 	
 	private String titulo;
 	private Double preco;
 	private ArrayList<Autor> listAutor = new ArrayList<Autor>();
-	private ArrayList<Autor> autoresDisponiveis = new ArrayList<Autor>(); //A FAZER!
+	
+	
+	
+	public Livro(ArrayList<Autor> autoresDisponiveis) {
+		this.listAutor = Autor.escolheAutor( autoresDisponiveis );
+	}
+	
 	
 	
 	void cadastraLivro() {
 		
-		listAutor.addAll(Autor.escolheAutor(autoresDisponiveis)); //A FAZER!
+		boolean livroCadastrado = false;
 		
-		System.out.print("Informe o nome do livro:\n");
-		titulo = sc.nextLine().toLowerCase();
-		
-		try {
-			System.out.print("Informe o preço:\n");
-			preco = sc.nextDouble();
-		} catch (InputMismatchException e) {
-			System.out.print("ERRO: Digite o preço corretamente.");
-			System.exit(0);
+		while(!livroCadastrado) {
+			Scanner sc = new Scanner(System.in);
+			System.out.print( "Informe o titulo do livro:\n" );
+			titulo = sc.nextLine().toLowerCase();
+			
+			try {
+				System.out.print("Informe o preço:\n");
+				preco = sc.nextDouble();
+			} catch ( InputMismatchException e ) {
+				System.out.print("ERRO: Digite o preço corretamente.");
+				System.exit(0);
+			}
+			
+			if ( validaTitulo() && validaPreco() ) {
+				livroCadastrado = true;
+			}
+			
+			System.out.println(Livro.this);
 		}
-		
-		if(!validaCadastro()) {
-			cadastraLivro();
-		}
+	
 	}
 
-	boolean validaCadastro() {
-		if (titulo.trim().equals("")) {
-			System.out.println("TITULO INVÁLIDO, DIGITE NOVAMENTE");
-			return false;
-		}
-		if (preco <= 0.0) {
-			System.out.println("PRECO INVÁLIDO, DIGITE NOVAMENTE");
+	
+	
+	boolean validaTitulo() {
+		if ( titulo.trim().equals("") ) {
+			System.out.println( "TITULO INVÁLIDO, DIGITE NOVAMENTE" );
 			return false;
 		}
 		return true;
 	}
 	
-	static void autoresDisponiveis(ArrayList<Autor> autores) {
-		AautoresDisponiveis = autores;							//A FAZER!
+	boolean validaPreco() {	
+		if ( preco <= 0.0 ) {
+			System.out.println( "PRECO INVÁLIDO, DIGITE NOVAMENTE" );
+			return false;
+		}
+		return true;
 	}
 	
-	static String listarAutores(ArrayList<Autor> listAutor){
-		for (Autor autor : listAutor) {
-			return "-----------------------------\n"
-					+ autor;
+	
+	
+	static String listarAutores( ArrayList<Autor> listAutor ) {
+		String ret = "";
+		for ( Autor autor : listAutor ) {
+			ret += "\n" + autor;
 		}
-		return null;
+		return ret;
 	}
+	
+	
+	
+	static String listarLivros( ArrayList< Livro > listLivro ) {
+		String retLivros = "";
+
+		for (Livro livro : listLivro) {
+			retLivros += livro;
+		}
+		return retLivros;
+	}
+	
+	
+	boolean contemAutor(String autorNome) {
+		for (Autor autor : this.listAutor) {
+			if(autor.getNome().equalsIgnoreCase(autorNome)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	
+	
+	
+	
 	
 	@Override
 	public String toString() {
-		return "LIVRO: " + titulo + ", PRECO: " + String.format("%.2f", preco)
-				+ "\nAUTORES\n" + listarAutores(listAutor);
+		return "-----------------------------\n"
+				+ "TÍTULO: " 
+				+ titulo 
+				+ ", PRECO: R$" 
+				+ String.format("%.2f", preco)
+				+ "\nAUTORES\n" 
+				+ listarAutores(listAutor);
 	}	
 }

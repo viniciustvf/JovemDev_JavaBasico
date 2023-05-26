@@ -19,25 +19,23 @@ public class Programa {
 			System.out.print(Util.menu());
 			
 			op = sc.nextInt();
-			
+
 			switch(op) {
 			case 1:
 				Autor autor = new Autor();
 				autor.cadastraAutor();
 				listAutor.add(autor);
-				Livro.autoresDisponiveis(listAutor);
 				break;
 			case 2:
-				Livro livro = new Livro();
+				Livro livro = new Livro(listAutor);
 				livro.cadastraLivro();
 				listLivro.add(livro);
-				System.out.println(livro);
 				break;
 			case 3:
-				
+				System.out.println(Livro.listarLivros(listLivro));
 				break;
 			case 4:
-				
+				System.out.println(Util.pesquisarPorAutor(listAutor, listLivro));
 				break;
 			case 5:
 				
