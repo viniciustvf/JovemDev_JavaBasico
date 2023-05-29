@@ -16,6 +16,9 @@ public class Livro {
     private Double preco;
     private ArrayList<Autor> listAutor = new ArrayList<Autor>();
 
+    public Livro( ) {
+    }
+    
     public Livro( ArrayList<Autor> autoresDisponiveis ) {
         this.listAutor = Autor.escolheAutor( autoresDisponiveis );
     }

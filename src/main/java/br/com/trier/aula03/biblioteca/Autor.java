@@ -15,7 +15,7 @@ public class Autor {
     private EnumSexo sexo;
     private Integer idade;
 
-    void cadastraAutor() {
+    public void cadastraAutor() {
         Scanner sc = new Scanner( System.in );
 
         System.out.print( "Informe o nome do autor: " );
