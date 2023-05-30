@@ -18,6 +18,5 @@ public class Disciplina {
 	private String nome;
 	private Integer cargaHoraria;
 	private Professor professor;
-	private ArrayList<Double> notas;
 	
 }

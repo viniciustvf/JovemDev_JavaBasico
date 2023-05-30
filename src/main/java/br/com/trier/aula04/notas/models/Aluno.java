@@ -13,11 +13,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Aluno {
+	
 	@NonNull
 	private String nome;
-	private ArrayList<DisciplinaAluno> disciplinaAluno;
+	private ArrayList<DisciplinaAluno> disciplinaAluno = new ArrayList<DisciplinaAluno>();
 	
-	public void setDisciplina(Disciplina disciplina, ArrayList<Double> notas) {
+	public void addDisciplina(Disciplina disciplina, ArrayList<Double> notas) {
 		
 	}
 	

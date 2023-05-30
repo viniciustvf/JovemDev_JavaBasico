@@ -1,4 +1,4 @@
-package br.com.trier.aula04.notas.repository;
+package br.com.trier.aula04.notas.util;
 
 import java.util.ArrayList;
 

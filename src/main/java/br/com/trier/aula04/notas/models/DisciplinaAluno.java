@@ -16,6 +16,8 @@ public class DisciplinaAluno {
 	private Disciplina disciplina;
 	private Aluno aluno;
 	ArrayList<Double> notas;
+	
+	
 
 	
 }
