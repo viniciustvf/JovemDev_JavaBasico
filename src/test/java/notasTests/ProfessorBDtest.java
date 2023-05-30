@@ -1,4 +1,4 @@
-package tests;
+package notasTests;
 
 import java.util.ArrayList;
 

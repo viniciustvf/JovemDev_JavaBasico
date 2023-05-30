@@ -9,8 +9,8 @@ public class AlunoBD {
 
 	private ArrayList<Aluno> alunoBD = new ArrayList<Aluno>();
 	
-	public Aluno cadastraAluno(String nome, ArrayList<Disciplina> disciplinas) {
-		Aluno aluno = new Aluno(nome, disciplinas);
+	public Aluno cadastraAluno(Aluno aluno) {
+		Aluno aluno = new Aluno();
 		alunoBD.add(aluno);
 		return aluno;
 	}

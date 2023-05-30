@@ -29,7 +29,13 @@ public class DisciplinaBD {
 	public ArrayList<Double> informarNotasDisciplina(Disciplina disciplina, Aluno aluno){
 		ArrayList<Double> notas = new ArrayList<Double>();
 		if(aluno.getDisciplina().equals(disciplina)) {
-			notas = aluno.getDisciplina()
+		}
+		return notas;
+	}
+	
+	public ArrayList<Double> listarDisciplinasComMedia(Aluno aluno){
+		ArrayList<Double> notas = new ArrayList<Double>();
+		if(aluno.getDisciplina().equals(disciplina)) {
 		}
 		return notas;
 	}

@@ -1,4 +1,4 @@
-package tests;
+package notasTests;
 
 import java.util.ArrayList;
 
@@ -23,12 +23,8 @@ class DisciplinaBDtest {
 	
 	@BeforeEach
 	void init() {
-		
-		
+
 	}
-	
-	
-	
 	
 	@Test
 	@DisplayName("Teste cadastro disciplina")

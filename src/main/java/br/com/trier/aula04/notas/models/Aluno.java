@@ -15,6 +15,11 @@ import lombok.Setter;
 public class Aluno {
 	@NonNull
 	private String nome;
-	private ArrayList<Disciplina> disciplina;
+	private ArrayList<DisciplinaAluno> disciplinaAluno;
+	
+	public void setDisciplina(Disciplina disciplina, ArrayList<Double> notas) {
+		
+	}
+	
 	
 }
