@@ -12,46 +12,26 @@ public class DisciplinaBD {
 	
 	private ArrayList<Disciplina> disciplinaBD = new ArrayList<Disciplina>();
 	
-	public Disciplina adicionaDisciplina (Disciplina disciplina) {
-		disciplina.setId(disciplinaBD.size()+1);
+	public Disciplina cadastraDisciplina(String nome, Integer cargaHoraria, Professor professor, ArrayList<Double> notas) {
+		Disciplina disciplina = new Disciplina(nome, cargaHoraria, professor, notas);
 		disciplinaBD.add(disciplina);
 		return disciplina;
 	}
-	
-	public void cadastraDisciplina(Disciplina disciplina, Professor professor) {
-		adicionaDisciplina(disciplina);
-		disciplinaBD.stream()
-					.filter(d -> d.getId().equals(disciplina.getId()))
-					.findFirst()
-					.ifPresent(d -> d.setProfessor(professor));
-	}
 		
-	public ArrayList<Disciplina> buscaPorAluno(Aluno aluno) {
-		ArrayList<Disciplina> disciplinasMatriculadas = new ArrayList<Disciplina>();
-		disciplinaBD.stream()
-					.filter(aluno.getDisciplinas()::contains)
-					.collect(Collectors.toCollection(ArrayList::new));
-		return disciplinasMatriculadas;				
+	public ArrayList<Disciplina> escolherDisciplina(Disciplina disciplina, Aluno aluno){
+		ArrayList<Disciplina> disciplinasEscolhidas = new ArrayList<Disciplina>();
+		if(aluno.getDisciplina().contains(disciplina)) {
+			disciplinasEscolhidas = aluno.getDisciplina();
+		}
+		return disciplinasEscolhidas;
 	}
 	
-	public ArrayList<Disciplina> escolherDisciplina(final Integer id, Aluno aluno) {
-		ArrayList<Disciplina> disciplinasDoAluno = buscaPorAluno(aluno);
-		 return (ArrayList<Disciplina>) disciplinasDoAluno.stream()
-		            .filter(disciplina -> disciplina.getId().equals(id))
-		            .collect(Collectors.toList());
+	public ArrayList<Double> informarNotasDisciplina(Disciplina disciplina, Aluno aluno){
+		ArrayList<Double> notas = new ArrayList<Double>();
+		if(aluno.getDisciplina().equals(disciplina)) {
+			notas = aluno.getDisciplina()
+		}
+		return notas;
 	}
-	
-	public ArrayList<Disciplina> notasPorDisciplina(final Integer id, Aluno aluno) {
-		ArrayList<Disciplina> disciplinas = escolherDisciplina(id,aluno);
-		disciplinas.stream()
-					.filter(disciplina -> disciplina.getId().equals(aluno.getId()))
-					.findFirst()
-					.orElse(null);
-		return notasDoAluno;		
-	}
-	
-	
-	
-	
 	
 }

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Aluno {
-	
-	private Integer id;
+	@NonNull
 	private String nome;
-	private ArrayList<Disciplina> disciplinas;
-	private ArrayList<Double> notas;
-
+	private ArrayList<Disciplina> disciplina;
 	
 }
