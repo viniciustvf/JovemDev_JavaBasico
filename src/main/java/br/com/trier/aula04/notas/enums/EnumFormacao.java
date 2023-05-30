@@ -1,4 +1,4 @@
-package br.com.trier.aula04.notas;
+package br.com.trier.aula04.notas.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

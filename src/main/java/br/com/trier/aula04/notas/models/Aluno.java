@@ -1,23 +1,20 @@
-package br.com.trier.aula04.notas;
+package br.com.trier.aula04.notas.models;
 
 import java.util.ArrayList;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.AllArgsConstructor;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class Aluno {
 	
+	private Integer id;
 	private String nome;
 	private ArrayList<Disciplina> disciplinas;
-	private Double nota1;
-	private Double nota2;
-	private Double nota3;
-	
-	
-	
-	
+	private ArrayList<Double> notas;
+
 	
 }
