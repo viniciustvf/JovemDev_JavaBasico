@@ -1,22 +1,20 @@
 package br.com.trier.aula04.notas.models;
 
-import java.util.ArrayList;
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@RequiredArgsConstructor
 public class Disciplina {
-
+	@NonNull
 	private String nome;
 	private Integer cargaHoraria;
+	@NonNull
 	private Professor professor;
 	
 }

@@ -18,9 +18,8 @@ public class Aluno {
 	private String nome;
 	private ArrayList<DisciplinaAluno> disciplinaAluno = new ArrayList<DisciplinaAluno>();
 	
-	public void addDisciplina(Disciplina disciplina, ArrayList<Double> notas) {
-		
+	void addDisciplinaAluno(DisciplinaAluno d) {
+		this.disciplinaAluno.add(d);
 	}
-	
-	
+
 }
