@@ -8,8 +8,6 @@ import br.com.trier.aula04.medicamento.models.Pessoa;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor
 public class Util {
 
 	List<Pessoa> pessoas = new ArrayList<Pessoa>();

@@ -1,22 +1,36 @@
 package br.com.trier.aula05.banco.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@Getter
-public abstract class Conta {
+@Getter @AllArgsConstructor
+public class Conta {
 
-	Integer numero;
-	Integer agencia;
-	String nomeCorrentista;
-	Double saldo;
+	private Integer numero;
+	private Integer agencia;
+	private String nomeCorrentista;
+	protected Double saldo;
 	
-	public void Deposito(final Double valor) {
+	public boolean deposito(final Double deposito) {
+		this.saldo += deposito;
+		return true;
 	}
 	
-	public void Saque(final Double valor) {
+	public boolean saque(final Double saque) {
+		if( temSaldo() && saque < this.saldo ) {
+			this.saldo -= saque;
+			return true;
+		}	
+		return false;
 	}
 	
-	public void Transferencia(final Double valor) {
+	public boolean transferencia(final Double valor, Conta contaDestino) {
+		if( temSaldo() && valor < this.saldo ) {
+			saque(valor);
+			contaDestino.deposito(valor);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean temSaldo() {
@@ -24,6 +38,5 @@ public abstract class Conta {
 			return true;
 		}
 		return false;
-	}
-	
+	}	
 }
