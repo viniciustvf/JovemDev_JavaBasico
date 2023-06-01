@@ -12,20 +12,20 @@ public class Conta {
 	protected Double saldo;
 	
 	public boolean deposito(final Double deposito) {
-		this.saldo = getSaldo() + deposito;
+		saldo = getSaldo() + deposito;
 		return true;
 	}
 	
 	public boolean saque(final Double saque) {
 		if( temSaldo() && saque < this.saldo ) {
-			this.saldo = getSaldo() - saque;
-			return true;
+			saldo = getSaldo() - saque;
+			return true; 
 		}	
 		return false;
 	}
 	
 	public boolean transferencia(final Double valor, Conta contaDestino) {
-		if( saque(valor) ) {
+		if( saque(valor) && temSaldo() ) {
 			if (contaDestino.deposito(valor)) {
 				return true;
 			} else {

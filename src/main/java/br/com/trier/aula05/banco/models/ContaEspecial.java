@@ -7,9 +7,9 @@ public class ContaEspecial extends Conta {
 
 	private Double limiteSaque = 0.0;
 	
-	public ContaEspecial(Integer numero, Integer agencia, String nomeCorrentista, Double saldo, Double valor) {
+	public ContaEspecial(Integer numero, Integer agencia, String nomeCorrentista, Double saldo, Double limite) {
 		super(numero, agencia, nomeCorrentista, saldo);
-		this.limiteSaque = cadastrarLimiteSaque(valor);
+		this.limiteSaque = cadastrarLimiteSaque(limite);
 	}
 
 	@Override
