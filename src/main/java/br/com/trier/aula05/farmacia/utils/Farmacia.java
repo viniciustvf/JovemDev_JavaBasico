@@ -33,14 +33,19 @@ public class Farmacia {
 		return venda;
 	}
 	
-	public Venda realizarVendaComReceita(int quantidade, Cliente cliente, Medicamento medicamento, String nomeMedico) {
-		medicamento.venderComReceita(quantidade, cliente, nomeMedico);
-		Venda venda = new Venda(medicamento, cliente, quantidade, nomeMedico);
-		vendaBD.add(venda);
-		return venda;
+	public Venda realizarVenda(int quantidade, Cliente cliente, Medicamento medicamento, String nomeMedico) {
+		Venda venda = null;
+		if ( medicamento.isReceitaMedica() ) { 
+			medicamento.vender(quantidade, cliente);
+			venda = new Venda(medicamento, cliente, quantidade, nomeMedico);
+			vendaBD.add(venda);
+		} else {
+			return realizarVenda(quantidade, cliente, medicamento);
+		}
+		return null;
 	}
 	
-	public boolean pagarConta(Double valor, Cliente cliente) {
+	public boolean cobraConta(Double valor, Cliente cliente) {
 		cliente.pagarConta(valor);
 		return true;
 	}

@@ -79,27 +79,41 @@ class FarmaciaTest {
 	}
 	
 	@Test
-	@DisplayName("Teste venda")
+	@DisplayName("Teste venda ok")
 	void testVendaOk() {
 		Farmacia farmacia = new Farmacia();
 		
-		Venda venda1 = farmacia.realizarVendaComReceita(5, clienteBD.get(0), (Medicamento) produtoBD.get(0), "Dr. Marcos");
+		Venda venda1 = farmacia.realizarVenda(5, clienteBD.get(0), (Medicamento) produtoBD.get(0), "Dr. Marcos");
 		Venda venda2 = farmacia.realizarVenda(5, clienteBD.get(1),produtoBD.get(3));
 		Venda venda3 = farmacia.realizarVenda(1, clienteBD.get(1),produtoBD.get(4));
 		Venda venda4 = farmacia.realizarVenda(1, clienteBD.get(0),produtoBD.get(3));
+		Venda venda5 = farmacia.realizarVenda(1, clienteBD.get(1),produtoBD.get(1));
 		vendaBD.add(venda1);
 		vendaBD.add(venda2);
 		vendaBD.add(venda3); 
-		vendaBD.add(venda4);
+		vendaBD.add(venda4); 
+		vendaBD.add(venda5); 
 		
 		Double divida = clienteBD.get(1).getDividas();
 		int estoque = produtoBD.get(0).getEstoque();
 		
+		Assertions.assertEquals(null, vendaBD.get(4).getNomeDoMedico());
 		Assertions.assertEquals(venda4, vendaBD.get(3));
 		Assertions.assertEquals(venda3, vendaBD.get(2));
 		Assertions.assertEquals(15, estoque);
 		Assertions.assertEquals(vendaBD.get(0), venda1);
-		Assertions.assertEquals(890.0, divida); 
+		Assertions.assertEquals(909.9, divida); 
+	}
+	
+	@Test
+	@DisplayName("Teste venda perfumaria se tiver devendo mais que R$300.00")
+	void testVendaComDivida() {
+		Farmacia farmacia = new Farmacia();
+		
+		Venda venda1 = farmacia.realizarVenda(1, clienteBD.get(1), produtoBD.get(4));
+		vendaBD.add(venda1);
+
+		Assertions.assertEquals(850.0, vendaBD.get(0).getCliente().getDividas()); 
 	}
 	
 	@Test
@@ -113,35 +127,14 @@ class FarmaciaTest {
 		p.add(produtoBD.get(4));
 		
 		Assertions.assertEquals(p, produtosListados); 
-	}
+	} 
 	
 	@Test
-	@DisplayName("Teste cliente pagar divida")
-	void testClientePagarConta() {
+	@DisplayName("Teste cliente paga divida")
+	void testPagaDivida() {
 		Farmacia farmacia = new Farmacia();
 		
-		
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+		farmacia.cobraConta(200.0, clienteBD.get(1));
+		Assertions.assertEquals(650.0, clienteBD.get(1).getDividas());
+	} 
 }

@@ -10,8 +10,5 @@ public class Venda {
 	Cliente cliente;
 	Integer quantidade;
 	String nomeDoMedico = "Sem receita médica";
-	
-	
-	
-	
+
 }

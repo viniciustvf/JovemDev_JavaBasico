@@ -16,6 +16,5 @@ public class Perfumaria extends Produto {
 		}
 		return super.vender(quantidade, cliente);
 	}
-	
-	
+
 }

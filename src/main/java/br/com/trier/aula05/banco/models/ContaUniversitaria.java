@@ -13,7 +13,7 @@ public class ContaUniversitaria extends Conta {
 
 	@Override
 	public boolean deposito(Double deposito) {
-		if ((deposito + getSaldo()) < limiteSaldo ) {
+		if ((deposito + getSaldo()) <= limiteSaldo ) {
 			return super.deposito(deposito);
 		}
 		return false;

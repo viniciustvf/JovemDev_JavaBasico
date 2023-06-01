@@ -12,19 +12,13 @@ public class Medicamento extends Produto {
 		this.receitaMedica = precisaReceita;
 	}
 
-	public boolean venderComReceita(Integer quantidade, Cliente cliente, String nome) {
+	public boolean vender(Integer quantidade, Cliente cliente) {
 		if ( receitaMedica ) {
 			super.vender(quantidade, cliente);
-			String nomeMedico = nome;
 			return true;
 		} else {
 			super.vender(quantidade, cliente);
 			return false;
 		}
 	}
-	
-
-	
-
-	
 }
