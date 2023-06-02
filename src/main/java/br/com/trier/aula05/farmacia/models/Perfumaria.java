@@ -5,16 +5,15 @@ import lombok.Getter;
 @Getter
 public class Perfumaria extends Produto {
 
-	public Perfumaria(String nome, Integer estoque, Double valor) {
+	public Perfumaria(String nome, int estoque, double valor) {
 		super(nome, estoque, valor);
 	}
-
+	
 	@Override
-	public boolean vender(int quantidade, Cliente cliente) {
-		if ( cliente.getDividas() >= 300.0 ) {
-			return false;
+	public boolean vender(Venda v) {
+		if(getEstoque() >= v.getQuantidade() && v.getCliente().getDividas() < 300) {
+			return super.vender(v);
 		}
-		return super.vender(quantidade, cliente);
+		return false;
 	}
-
 }

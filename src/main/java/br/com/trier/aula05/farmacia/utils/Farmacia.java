@@ -11,56 +11,28 @@ import lombok.Getter;
 @Getter
 public class Farmacia {
 
-	protected List<Produto> produtoBD = new ArrayList<Produto>();
-	protected List<Cliente> clienteBD = new ArrayList<Cliente>();
-	protected List<Venda> vendaBD = new ArrayList<Venda>();
+private List<Venda> vendas = new ArrayList<Venda>();
 	
-	
-	public Cliente cadastrarCliente(Cliente cliente) {
-		clienteBD.add(cliente);
-		return cliente;
-	}
-	
-	public Produto cadastrarProduto(Produto produto) {
-		produtoBD.add(produto);
-		return produto;
-	}
-	
-	public Venda realizarVenda(Integer quantidade, Cliente cliente, Produto produto) {
-		produto.vender(quantidade, cliente);
-		Venda venda = new Venda(produto, cliente, quantidade, null);
-		vendaBD.add(venda);
-		return venda;
-	}
-	
-	public Venda realizarVenda(int quantidade, Cliente cliente, Medicamento medicamento, String nomeMedico) {
-		Venda venda = null;
-		if ( medicamento.isReceitaMedica() ) { 
-			medicamento.vender(quantidade, cliente);
-			venda = new Venda(medicamento, cliente, quantidade, nomeMedico);
-			vendaBD.add(venda);
-		} else {
-			return realizarVenda(quantidade, cliente, medicamento);
+	public void vender(Cliente cliente, Produto produto, int qt, String medico) {
+		Venda v = new Venda(cliente, produto, qt, medico);
+		if(produto.vender(v)) {
+			vendas.add(v);
 		}
-		return null;
 	}
 	
-	public boolean cobraConta(Double valor, Cliente cliente) {
-		cliente.pagarConta(valor);
-		return true;
+	public List<Venda> vendasPorCliente(Cliente c){
+//		List<Venda> vendasEncontradas = new ArrayList<>();
+//		for (Venda venda : vendas) {
+//			if(venda.ehCliente(c)) {
+//				vendasEncontradas.add(venda);
+//			}
+//		}
+//		return vendasEncontradas;
+		
+		return vendas.stream().filter( v -> v.ehCliente(c)).toList();
 	}
 	
-	public List<Produto> listarProdutoPreco (Double valorI, Double valorF, List<Produto> produto) {
-		List<Produto> produtoRet = new ArrayList<Produto>();
-		for (Produto p : produto) {
-			if ( p.getValor() >= valorI && p.getValor() <= valorF ) {
-				produtoRet.add(p);
-			}
-		}
-		return produtoRet;
-	}
 	
-	public List<Cliente> listarClientes() {
-		return clienteBD;
-	}
+	
+	
 }

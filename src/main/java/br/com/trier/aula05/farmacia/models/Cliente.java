@@ -8,15 +8,17 @@ import lombok.Setter;
 public class Cliente {
 
 	private String nome;
-	private Double dividas = 0.0;
+	private Double dividas;
 	
-	public boolean pagarConta (Double valor) {
-		if ( dividas >= valor ) {
-			dividas -= valor;
-			return true;
+	public double pagarConta(double vl) {
+		if(vl > 0 && getDividas() >= vl) {
+			dividas = getDividas() - vl;
 		}
-		return false;
+		return getDividas();
 	}
 	
-	
+	public void adicionaValor(double vl) {
+		dividas = getDividas() + vl;
+	}
+
 }

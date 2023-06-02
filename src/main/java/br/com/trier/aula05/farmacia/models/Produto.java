@@ -6,23 +6,13 @@ import lombok.Getter;
 @Getter @AllArgsConstructor
 public abstract class Produto {
 
-	protected String nome;
-	protected int estoque;
-	protected Double valor;
+	private String nome;
+	private int estoque;
+	private double valor;
 	
-	public boolean vender(int quantidade, Cliente cliente) {
-		if ( temEstoque() ) {
-			cliente.setDividas( cliente.getDividas() + (valor * quantidade) );
-			estoque -= quantidade;
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean temEstoque() {
-		if ( estoque != 0 ) {
-			return true;
-		}
-		return false;
+	public boolean vender(Venda v) {
+		estoque = getEstoque() - v.getQuantidade();
+		v.getCliente().adicionaValor(v.getQuantidade()*getValor());
+		return true;
 	}
 }
