@@ -6,8 +6,8 @@ import java.util.List;
 import br.com.trier.aula04.medicamento.models.Medicamento;
 import br.com.trier.aula04.medicamento.models.Pessoa;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
+@Getter
 public class Util {
 
 	List<Pessoa> pessoas = new ArrayList<Pessoa>();

@@ -110,11 +110,70 @@ inner join candidato on candidato.id = v.candidato
 inner join cargo on cargo.id = candidato.cargo and cargo.nome = 'Prefeito'
 inner join cidade on cidade.id = candidato.cidade and cidade.nome = 'TUBARÃO'
 inner join voto_invalido vi on vi.cidade = cidade.id and vi.cargo = cargo.id;
---22 TO-DO
-select c.qt_eleitores - (sum(v.voto) + sum(vi.brancos) + sum(vi.nulos)) as eleitores_que_nao_votaram 
-from cidade c 
-left join candidato can on can.cidade = c.id
-left join voto v on v.candidato = can.id
-left join voto_invalido vi on vi.cidade = c.id
-where c.nome = 'TUBARÃO'
-group by 
+--22 
+select
+  (select c.qt_eleitores from cidade c where c.nome = 'TUBARÃO') -
+  (
+    (select sum(v.voto)
+    from voto v
+    inner join candidato cand on cand.id = v.candidato 
+    inner join cidade c on c.id = cand.cidade and c.nome = 'TUBARÃO'
+    inner join cargo on cargo.id = cand.cargo and cargo.nome = 'Prefeito')
+    +
+    (select (vi.brancos + vi.nulos)
+    from voto_invalido vi
+    inner join cargo on cargo.id = vi.cargo and cargo.nome = 'Prefeito'
+    inner join cidade c on c.id = vi.cidade and c.nome = 'TUBARÃO')
+  ) as abstencoes;
+--23 
+select
+  c.nome,
+  c.qt_eleitores - 
+  (
+    (select COALESCE(SUM(v.voto), 0)
+    from voto v
+    inner join candidato cand on cand.id = v.candidato 
+    inner join cidade ci on ci.id = cand.cidade
+    inner join cargo on cargo.id = cand.cargo and cargo.nome = 'Prefeito'
+    where ci.id = c.id)
+    +
+    (select COALESCE(SUM(vi.brancos + vi.nulos), 0)
+    from voto_invalido vi
+    inner join cargo on cargo.id = vi.cargo and cargo.nome = 'Prefeito'
+    where vi.cidade = c.id)
+  ) as abstencoes
+from cidade c;
+--24 
+select
+  c.nome,
+  ((c.qt_eleitores - 
+    (
+      (select coalesce(sum(v.voto), 0)
+      from voto v
+      inner join candidato cand on cand.id = v.candidato 
+      inner join cidade ci on ci.id = cand.cidade
+      inner join cargo on cargo.id = cand.cargo and cargo.nome = 'Prefeito'
+      where ci.id = c.id)
+      +
+      (select coalesce(sum(vi.brancos + vi.nulos), 0)
+      from voto_invalido vi
+      inner join cargo on cargo.id = vi.cargo and cargo.nome = 'Prefeito'
+      where vi.cidade = c.id)
+    )) / c.qt_eleitores) * 100 as percentual_faltantes
+from cidade c
+order by percentual_faltantes desc;
+--25
+select
+  c.nome as cidade,
+  can.nome as candidato_eleito
+from cidade c
+inner join candidato can on can.cidade = c.id
+inner join cargo on cargo.id = can.cargo and cargo.nome = 'Prefeito'
+where can.id = (
+  select v.candidato
+  from voto v
+  where v.candidato = can.id
+  group by v.candidato
+  order by count(*) desc
+)
+order by cidade;
